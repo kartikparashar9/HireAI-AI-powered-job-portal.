@@ -1,0 +1,9 @@
+const INTERVIEW_TYPES = Object.freeze({
+  PHONE: "PHONE",
+  VIDEO: "VIDEO",
+  IN_PERSON: "IN_PERSON",
+});
+
+const INTERVIEW_TYPE_VALUES = Object.values(INTERVIEW_TYPES);
+
+export { INTERVIEW_TYPES, INTERVIEW_TYPE_VALUES };

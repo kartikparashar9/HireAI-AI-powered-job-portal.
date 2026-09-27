@@ -1,0 +1,10 @@
+const JOB_TYPES = Object.freeze({
+  FULL_TIME: "FULL_TIME",
+  PART_TIME: "PART_TIME",
+  INTERNSHIP: "INTERNSHIP",
+  CONTRACT: "CONTRACT",
+});
+
+const JOB_TYPE_VALUES = Object.values(JOB_TYPES);
+
+export { JOB_TYPES, JOB_TYPE_VALUES };

@@ -1,0 +1,43 @@
+/* Large desktop */
+
+@media (min-width: 1440px) {
+  .container {
+    width: min(100% - 48px, 1440px);
+  }
+}
+
+/* Tablet */
+
+@media (max-width: 1024px) {
+  .desktop-only {
+    display: none !important;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+  .mobile-only {
+    display: block !important;
+  }
+
+  .desktop-only {
+    display: none !important;
+  }
+}
+
+/* Small mobile */
+
+@media (max-width: 480px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+/* iPhone SE / very small screens */
+
+@media (max-width: 375px) {
+  .container {
+    width: calc(100% - 20px);
+  }
+}

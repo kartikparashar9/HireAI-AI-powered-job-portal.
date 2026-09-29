@@ -1,0 +1,24 @@
+import { Navigate, Outlet, useLocation } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
+
+const ProtectedRoute = () => {
+  const { isAuthenticated, isInitialized } = useAuth();
+  const location = useLocation();
+
+  if (!isInitialized) {
+    return (
+      <div className="route-loader">
+        <div className="route-loader-spinner" />
+        <p>Loading HireAI...</p>
+      </div>
+    );
+  }
+
+  if (!isAuthenticated) {
+    return <Navigate to="/login" replace state={{ from: location.pathname }} />;
+  }
+
+  return <Outlet />;
+};
+
+export default ProtectedRoute;

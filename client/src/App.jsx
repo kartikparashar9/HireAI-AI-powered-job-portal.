@@ -1,13 +1,7 @@
-import { useState } from 'react'
+import AppRoutes from "./routes/AppRoutes";
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  return <AppRoutes />;
+};
 
-  return (
-    <>
-      <h1>AI Powered: Job Portal</h1>
-    </>
-  )
-}
-
-export default App
+export default App;

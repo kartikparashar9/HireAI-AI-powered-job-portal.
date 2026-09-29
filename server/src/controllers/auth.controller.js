@@ -367,13 +367,9 @@ const resendVerificationEmail = asyncHandler(async (req, res) => {
   const rawToken = generateRandomToken();
 
   user.emailVerificationToken = hashToken(rawToken);
-
   user.emailVerificationExpires = new Date(now + VERIFICATION_TOKEN_EXPIRY_MS);
-
   user.emailVerificationResendCount = resendCount + 1;
-
   user.emailVerificationResendWindowStart = windowStart;
-
   await user.save();
 
   const verificationUrl = `${env.clientUrl}/verify-email?token=${rawToken}`;
@@ -386,7 +382,7 @@ const resendVerificationEmail = asyncHandler(async (req, res) => {
       {
         resendCount: user.emailVerificationResendCount,
         remainingResends:
-          MAX_VERIFICATION_RESENDS - user.emailVerificationResendCount,
+          MAX_RESEND_ATTEMPTS - user.emailVerificationResendCount,
         expiresInSeconds: 60,
       },
       "Verification email sent",

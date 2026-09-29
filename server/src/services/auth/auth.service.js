@@ -1,17 +1,11 @@
 import User from "../../models/User.js";
-
 import ApiError from "../../utils/ApiError.js";
-
 import { ROLES } from "../../constants/roles.js";
-
 import { generateRandomToken, hashToken } from "./token.service.js";
-
 import { RECRUITER_STATUSES } from "../../constants/recruiterStatus.js";
 
 const VERIFICATION_TOKEN_EXPIRY_MS = 60 * 1000;
-
 const MAX_RESEND_ATTEMPTS = 5;
-
 const RESEND_WINDOW_MS = 60 * 60 * 1000;
 
 const registerUser = async ({ name, email, password, role }) => {

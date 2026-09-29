@@ -1,5 +1,4 @@
 import User from "../models/User.js";
-
 import asyncHandler from "../utils/asyncHandler.js";
 import ApiError from "../utils/ApiError.js";
 import ApiResponse from "../utils/ApiResponse.js";
@@ -35,12 +34,6 @@ import {
 } from "../services/email/email.service.js";
 
 import env from "../config/env.js";
-
-// const VERIFICATION_TOKEN_EXPIRY_MS = 60 * 1000;
-
-// const MAX_VERIFICATION_RESENDS = 5;
-
-// const VERIFICATION_RESEND_WINDOW_MS = 60 * 60 * 1000;
 
 const createAuthResponse = (user) => {
   const accessToken = generateAccessToken(user);
@@ -395,7 +388,7 @@ const forgotPassword = asyncHandler(async (req, res) => {
 
   const user = await User.findOne({
     email,
-  }).select("+resetPasswordToken");
+  }).select("+password +resetPasswordToken");
 
   // Don't reveal whether the email exists.
   if (!user) {
@@ -410,6 +403,7 @@ const forgotPassword = asyncHandler(async (req, res) => {
       );
   }
 
+  // Google-only account
   if (!user.password) {
     return res
       .status(200)
@@ -422,16 +416,20 @@ const forgotPassword = asyncHandler(async (req, res) => {
       );
   }
 
+  // Generate raw reset token
   const rawToken = generateRandomToken();
 
+  // Store hashed token
   user.resetPasswordToken = hashToken(rawToken);
 
+  // Token valid for 15 minutes
   user.resetPasswordExpires = new Date(Date.now() + 15 * 60 * 1000);
 
   await user.save();
 
+  // IMPORTANT:
+  // resetUrl must be created BEFORE logging it.
   const resetUrl = `${env.clientUrl}/reset-password?token=${rawToken}`;
-
   await sendPasswordResetEmail(user.email, resetUrl);
 
   return res
@@ -462,11 +460,8 @@ const resetPassword = asyncHandler(async (req, res) => {
   }
 
   user.password = password;
-
   user.passwordChangedAt = new Date();
-
   user.resetPasswordToken = null;
-
   user.resetPasswordExpires = null;
 
   // Invalidate current login sessions.

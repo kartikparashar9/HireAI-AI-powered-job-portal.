@@ -17,49 +17,39 @@ import { aiRateLimiter } from "../middlewares/rateLimiter.middleware.js";
 
 const router = express.Router();
 
-/*
-|--------------------------------------------------------------------------
-| Authentication
-|--------------------------------------------------------------------------
-*/
-
+/**
+ * Authentication
+ */
 router.use(authMiddleware);
 
-/*
-|--------------------------------------------------------------------------
-| Role Authorization
-|--------------------------------------------------------------------------
-*/
-
+/**
+ * Only JOB_SEEKER can use AI features
+ */
 router.use(authorizeRoles("JOB_SEEKER"));
 
-/*
-|--------------------------------------------------------------------------
-| AI Rate Limiting
-|--------------------------------------------------------------------------
-*/
-
+/**
+ * AI rate limiter
+ */
 router.use(aiRateLimiter);
 
-/*
-|--------------------------------------------------------------------------
-| AI Operations
-|--------------------------------------------------------------------------
-*/
-
+/**
+ * AI Operations
+ */
 router.post("/resume-analysis", analyzeResumeController);
+
 router.post("/job-matching", matchJobController);
+
 router.post("/recommendations", getJobRecommendationsController);
+
 router.post("/skill-gap", analyzeSkillGapController);
+
 router.post("/interview-preparation", generateInterviewPreparationController);
 
-/*
-|--------------------------------------------------------------------------
-| AI Analysis History
-|--------------------------------------------------------------------------
-*/
-
+/**
+ * AI Analysis History
+ */
 router.get("/analyses", getMyAIAnalysesController);
+
 router.get("/analyses/:id", getAIAnalysisByIdController);
 
 export default router;

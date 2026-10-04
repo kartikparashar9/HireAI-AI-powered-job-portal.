@@ -5,7 +5,6 @@ import { JOB_STATUSES } from "../../constants/jobStatus.js";
 
 const createJob = async (recruiterId, jobData) => {
   const {
-    company,
     experienceMin = 0,
     experienceMax = 0,
     salaryMin = 0,
@@ -15,12 +14,14 @@ const createJob = async (recruiterId, jobData) => {
   } = jobData;
 
   const recruiterCompany = await Company.findOne({
-    _id: company,
     recruiter: recruiterId,
   });
 
   if (!recruiterCompany) {
-    throw new ApiError(403, "You can only create jobs for your own company");
+    throw new ApiError(
+      404,
+      "Please create your company profile before posting a job",
+    );
   }
 
   if (experienceMax < experienceMin) {
@@ -41,18 +42,31 @@ const createJob = async (recruiterId, jobData) => {
     throw new ApiError(400, "Application deadline must be in the future");
   }
 
-  const skills = rest.skills.map((skill) => skill.trim());
+  const skills = Array.isArray(rest.skills)
+    ? rest.skills.map((skill) => String(skill).trim()).filter(Boolean)
+    : [];
+
+  if (skills.length === 0) {
+    throw new ApiError(400, "At least one skill is required");
+  }
 
   const job = await Job.create({
     ...rest,
+
     skills,
+
     company: recruiterCompany._id,
+
     recruiter: recruiterId,
+
     experienceMin,
     experienceMax,
+
     salaryMin,
     salaryMax,
+
     applicationDeadline: applicationDeadline || null,
+
     status: JOB_STATUSES.OPEN,
   });
 

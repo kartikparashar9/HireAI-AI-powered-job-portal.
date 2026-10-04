@@ -1,5 +1,15 @@
 import { body } from "express-validator";
 
+const JOB_TYPES = [
+  "FULL_TIME",
+  "PART_TIME",
+  "INTERNSHIP",
+  "CONTRACT",
+  "FREELANCE",
+];
+
+const WORK_MODES = ["ONSITE", "REMOTE", "HYBRID"];
+
 const createJobValidator = [
   body("title")
     .trim()
@@ -15,12 +25,6 @@ const createJobValidator = [
     .isLength({ min: 20, max: 10000 })
     .withMessage("Job description must be between 20 and 10000 characters"),
 
-  body("company")
-    .notEmpty()
-    .withMessage("Company is required")
-    .isMongoId()
-    .withMessage("Invalid company ID"),
-
   body("skills")
     .isArray({ min: 1 })
     .withMessage("At least one skill is required"),
@@ -32,6 +36,28 @@ const createJobValidator = [
     .isLength({ max: 50 })
     .withMessage("Skill cannot exceed 50 characters"),
 
+  body("requirements")
+    .optional()
+    .isArray()
+    .withMessage("Requirements must be an array"),
+
+  body("requirements.*")
+    .optional()
+    .trim()
+    .notEmpty()
+    .withMessage("Requirement cannot be empty"),
+
+  body("responsibilities")
+    .optional()
+    .isArray()
+    .withMessage("Responsibilities must be an array"),
+
+  body("responsibilities.*")
+    .optional()
+    .trim()
+    .notEmpty()
+    .withMessage("Responsibility cannot be empty"),
+
   body("location")
     .optional()
     .trim()
@@ -41,13 +67,13 @@ const createJobValidator = [
   body("jobType")
     .notEmpty()
     .withMessage("Job type is required")
-    .isIn(["FULL_TIME", "PART_TIME", "INTERNSHIP", "CONTRACT"])
+    .isIn(JOB_TYPES)
     .withMessage("Invalid job type"),
 
   body("workMode")
     .notEmpty()
     .withMessage("Work mode is required")
-    .isIn(["ONSITE", "REMOTE", "HYBRID"])
+    .isIn(WORK_MODES)
     .withMessage("Invalid work mode"),
 
   body("experienceMin")
@@ -89,8 +115,6 @@ const updateJobValidator = [
     .isLength({ min: 20, max: 10000 })
     .withMessage("Job description must be between 20 and 10000 characters"),
 
-  body("company").optional().isMongoId().withMessage("Invalid company ID"),
-
   body("skills")
     .optional()
     .isArray({ min: 1 })
@@ -104,21 +128,37 @@ const updateJobValidator = [
     .isLength({ max: 50 })
     .withMessage("Skill cannot exceed 50 characters"),
 
+  body("requirements")
+    .optional()
+    .isArray()
+    .withMessage("Requirements must be an array"),
+
+  body("requirements.*")
+    .optional()
+    .trim()
+    .notEmpty()
+    .withMessage("Requirement cannot be empty"),
+
+  body("responsibilities")
+    .optional()
+    .isArray()
+    .withMessage("Responsibilities must be an array"),
+
+  body("responsibilities.*")
+    .optional()
+    .trim()
+    .notEmpty()
+    .withMessage("Responsibility cannot be empty"),
+
   body("location")
     .optional()
     .trim()
     .isLength({ max: 200 })
     .withMessage("Location cannot exceed 200 characters"),
 
-  body("jobType")
-    .optional()
-    .isIn(["FULL_TIME", "PART_TIME", "INTERNSHIP", "CONTRACT"])
-    .withMessage("Invalid job type"),
+  body("jobType").optional().isIn(JOB_TYPES).withMessage("Invalid job type"),
 
-  body("workMode")
-    .optional()
-    .isIn(["ONSITE", "REMOTE", "HYBRID"])
-    .withMessage("Invalid work mode"),
+  body("workMode").optional().isIn(WORK_MODES).withMessage("Invalid work mode"),
 
   body("experienceMin")
     .optional()

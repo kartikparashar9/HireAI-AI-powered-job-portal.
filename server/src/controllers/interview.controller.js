@@ -82,11 +82,15 @@ const cancelInterviewController = asyncHandler(async (req, res) => {
 });
 
 const completeInterviewController = asyncHandler(async (req, res) => {
-  const interview = await completeInterview(req.user.userId, req.params.id);
+  const interview = await completeInterview(
+    req.user.userId,
+    req.params.id,
+    req.body,
+  );
 
   return res
     .status(200)
-    .json(new ApiResponse(200, interview, "Interview marked as completed"));
+    .json(new ApiResponse(200, interview, "Interview completed successfully"));
 });
 
 export {

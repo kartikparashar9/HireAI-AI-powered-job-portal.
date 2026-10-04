@@ -331,32 +331,37 @@ const cancelInterview = async (userId, role, interviewId) => {
   return interview;
 };
 
-const completeInterview = async (recruiterId, interviewId) => {
-  const interview = await Interview.findOne({
-    _id: interviewId,
-    recruiter: recruiterId,
-  });
+const completeInterview = async (recruiterId, interviewId, data = {}) => {
+  const interview = await Interview.findById(interviewId).populate(
+    "job",
+    "recruiter title",
+  );
 
   if (!interview) {
     throw new ApiError(404, "Interview not found");
   }
 
-  if (
-    [
-      INTERVIEW_STATUSES.CANCELLED,
-      INTERVIEW_STATUSES.DECLINED,
-      INTERVIEW_STATUSES.COMPLETED,
-    ].includes(interview.status)
-  ) {
+  if (interview.job.recruiter.toString() !== recruiterId.toString()) {
+    throw new ApiError(
+      403,
+      "You are not authorized to complete this interview",
+    );
+  }
+
+  if (interview.status !== "SCHEDULED") {
     throw new ApiError(
       400,
       `Interview cannot be completed because it is already ${interview.status.toLowerCase()}`,
     );
   }
 
-  interview.status = INTERVIEW_STATUSES.COMPLETED;
+  interview.status = "COMPLETED";
 
-  interview.statusUpdatedAt = new Date();
+  if (data.notes !== undefined) {
+    interview.notes = data.notes;
+  }
+
+  interview.completedAt = new Date();
 
   await interview.save();
 

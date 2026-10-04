@@ -17,6 +17,7 @@ import {
   updateInterviewController,
   updateInterviewByCandidateController,
   cancelInterviewController,
+  completeInterviewController
 } from "../controllers/interview.controller.js";
 
 import {
@@ -99,6 +100,14 @@ router.get(
   interviewReadLimiter,
   authorizeRoles("JOB_SEEKER", "RECRUITER"),
   getInterviewByIdController,
+);
+
+router.patch(
+  "/:id/complete",
+  interviewWriteLimiter,
+  authorizeRoles("RECRUITER"),
+  requireApprovedRecruiter,
+  completeInterviewController,
 );
 
 export default router;

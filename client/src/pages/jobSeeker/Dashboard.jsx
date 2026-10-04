@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import "./dashboard.css";
+import "./Dashboard.css";
 
 const Dashboard = () => {
   const navigate = useNavigate();

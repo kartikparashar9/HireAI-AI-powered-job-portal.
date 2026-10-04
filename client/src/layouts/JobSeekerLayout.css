@@ -1,16 +1,32 @@
 /* =========================================================
-   JOB SEEKER SIDEBAR
-========================================================= */
+   JOB SEEKER LAYOUT
+   ========================================================= */
+
+.job-seeker-layout {
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+
+  display: flex;
+
+  background: #f8fafc;
+
+  overflow-x: hidden;
+}
+
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
 
 .job-seeker-sidebar {
   position: fixed;
-
   top: 0;
   left: 0;
 
   width: 250px;
   height: 100vh;
   height: 100dvh;
+  max-height: 100dvh;
 
   display: flex;
   flex-direction: column;
@@ -24,30 +40,23 @@
   overflow-x: hidden;
   overflow-y: auto;
 
-  overscroll-behavior: contain;
-
   -webkit-overflow-scrolling: touch;
+
+  overscroll-behavior-y: contain;
+
+  touch-action: pan-y;
 
   scrollbar-width: thin;
   scrollbar-color: #cbd5e1 transparent;
 
-  /*
-    Important:
-    Prevent content from forcing sidebar width.
-  */
   min-width: 0;
 
-  /*
-    Smooth mobile drawer.
-  */
   transform: translateX(0);
 
   transition: transform 0.25s ease;
 }
 
-/* =========================================================
-   SIDEBAR SCROLLBAR
-========================================================= */
+/* Sidebar scrollbar */
 
 .job-seeker-sidebar::-webkit-scrollbar {
   width: 5px;
@@ -59,7 +68,6 @@
 
 .job-seeker-sidebar::-webkit-scrollbar-thumb {
   background: #cbd5e1;
-
   border-radius: 999px;
 }
 
@@ -68,12 +76,11 @@
 }
 
 /* =========================================================
-   BRAND WRAPPER
-========================================================= */
+   SIDEBAR BRAND
+   ========================================================= */
 
 .sidebar-brand-wrapper {
   width: 100%;
-
   min-height: 72px;
 
   display: flex;
@@ -89,10 +96,6 @@
   border-bottom: 1px solid #f1f5f9;
 }
 
-/* =========================================================
-   BRAND
-========================================================= */
-
 .sidebar-brand {
   min-width: 0;
 
@@ -107,10 +110,6 @@
 
   flex-shrink: 0;
 }
-
-/* =========================================================
-   BRAND MARK
-========================================================= */
 
 .sidebar-brand-mark {
   width: 38px;
@@ -141,10 +140,6 @@
   max-width: none;
 }
 
-/* =========================================================
-   BRAND TEXT
-========================================================= */
-
 .sidebar-brand-text {
   display: block;
 
@@ -165,8 +160,8 @@
 }
 
 /* =========================================================
-   MOBILE CLOSE BUTTON
-========================================================= */
+   SIDEBAR CLOSE
+   ========================================================= */
 
 .sidebar-close-btn {
   width: 36px;
@@ -185,6 +180,7 @@
   background: #f8fafc;
 
   border: 1px solid #e2e8f0;
+
   border-radius: 9px;
 
   flex-shrink: 0;
@@ -192,7 +188,8 @@
   transition:
     color 0.2s ease,
     background-color 0.2s ease,
-    border-color 0.2s ease;
+    border-color 0.2s ease,
+    transform 0.15s ease;
 }
 
 .sidebar-close-btn:hover {
@@ -215,8 +212,8 @@
 }
 
 /* =========================================================
-   NAVIGATION
-========================================================= */
+   SIDEBAR NAV
+   ========================================================= */
 
 .sidebar-nav {
   width: 100%;
@@ -225,10 +222,6 @@
 
   flex-shrink: 0;
 }
-
-/* =========================================================
-   SECTION TITLE
-========================================================= */
 
 .sidebar-section-title {
   width: 100%;
@@ -249,10 +242,6 @@
   text-transform: uppercase;
 }
 
-/* =========================================================
-   NAV LIST
-========================================================= */
-
 .sidebar-nav-list {
   width: 100%;
 
@@ -260,16 +249,13 @@
   flex-direction: column;
 
   gap: 4px;
-}
 
-/* =========================================================
-   NAV ITEM
-========================================================= */
+  min-width: 0;
+}
 
 .sidebar-nav-item {
   width: 100%;
   min-width: 0;
-
   min-height: 44px;
 
   display: flex;
@@ -284,6 +270,7 @@
   background: transparent;
 
   border: 1px solid transparent;
+
   border-radius: 10px;
 
   text-decoration: none;
@@ -294,11 +281,9 @@
     border-color 0.18s ease;
 
   user-select: none;
-}
 
-/* =========================================================
-   NAV ITEM HOVER
-========================================================= */
+  flex-shrink: 0;
+}
 
 .sidebar-nav-item:hover {
   color: #1e293b;
@@ -307,10 +292,6 @@
 
   border-color: #f1f5f9;
 }
-
-/* =========================================================
-   ACTIVE NAV ITEM
-========================================================= */
 
 .sidebar-nav-item-active {
   color: #2563eb;
@@ -327,10 +308,6 @@
 
   border-color: #dbeafe;
 }
-
-/* =========================================================
-   NAV ICON
-========================================================= */
 
 .sidebar-nav-icon {
   width: 20px;
@@ -353,14 +330,12 @@
   max-width: none;
 }
 
-/* =========================================================
-   NAV LABEL
-========================================================= */
-
 .sidebar-nav-label {
   min-width: 0;
 
   overflow: hidden;
+
+  color: inherit;
 
   font-size: 14px;
   font-weight: 500;
@@ -368,12 +343,13 @@
   line-height: 1.3;
 
   text-overflow: ellipsis;
+
   white-space: nowrap;
 }
 
 /* =========================================================
    SIDEBAR FOOTER
-========================================================= */
+   ========================================================= */
 
 .sidebar-footer {
   width: 100%;
@@ -384,10 +360,6 @@
 
   flex-shrink: 0;
 }
-
-/* =========================================================
-   AI CAREER CARD
-========================================================= */
 
 .sidebar-ai-card {
   width: 100%;
@@ -405,10 +377,6 @@
 
   border-radius: 12px;
 }
-
-/* =========================================================
-   AI ICON
-========================================================= */
 
 .sidebar-ai-icon {
   width: 32px;
@@ -437,16 +405,11 @@
   max-width: none;
 }
 
-/* =========================================================
-   AI CONTENT
-========================================================= */
-
 .sidebar-ai-content {
   min-width: 0;
 
   display: flex;
   flex-direction: column;
-
   align-items: flex-start;
 }
 
@@ -465,6 +428,7 @@
   line-height: 1.35;
 
   text-overflow: ellipsis;
+
   white-space: nowrap;
 }
 
@@ -498,121 +462,32 @@
 }
 
 /* =========================================================
-   DESKTOP
-========================================================= */
+   MAIN AREA
+   ========================================================= */
 
-@media (min-width: 769px) {
-  .job-seeker-sidebar {
-    transform: translateX(0);
-  }
+.job-seeker-main {
+  width: calc(100% - 250px);
 
-  .sidebar-close-btn {
-    display: none;
-  }
+  min-width: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+
+  margin-left: 250px;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow-x: hidden;
 }
 
 /* =========================================================
-   TABLET + MOBILE
-========================================================= */
-
-@media (max-width: 768px) {
-  .job-seeker-sidebar {
-    width: 270px;
-
-    height: 100vh;
-    height: 100dvh;
-
-    transform: translateX(-100%);
-
-    box-shadow: 8px 0 30px rgba(15, 23, 42, 0.12);
-  }
-
-  .job-seeker-sidebar.sidebar-mobile-open {
-    transform: translateX(0);
-
-    box-shadow: 8px 0 30px rgba(15, 23, 42, 0.18);
-  }
-
-  .sidebar-brand-wrapper {
-    min-height: 64px;
-
-    padding-inline: 16px;
-  }
-
-  .sidebar-close-btn {
-    display: flex;
-  }
-
-  .sidebar-nav {
-    padding-top: 18px;
-  }
-}
-
-/* =========================================================
-   SMALL MOBILE
-========================================================= */
-
-@media (max-width: 480px) {
-  .job-seeker-sidebar {
-    width: 260px;
-  }
-
-  .sidebar-brand-wrapper {
-    padding-inline: 14px;
-  }
-
-  .sidebar-nav {
-    padding-inline: 12px;
-  }
-
-  .sidebar-footer {
-    padding: 12px;
-  }
-
-  .sidebar-nav-item {
-    min-height: 43px;
-  }
-}
-
-/* =========================================================
-   VERY SMALL MOBILE
-========================================================= */
-
-@media (max-width: 360px) {
-  .job-seeker-sidebar {
-    width: 245px;
-  }
-
-  .sidebar-brand-text {
-    font-size: 19px;
-  }
-
-  .sidebar-ai-card {
-    padding: 11px;
-  }
-}
-
-/* =========================================================
-   REDUCED MOTION
-========================================================= */
-
-@media (prefers-reduced-motion: reduce) {
-  .job-seeker-sidebar,
-  .sidebar-nav-item,
-  .sidebar-close-btn {
-    transition: none;
-  }
-}
-
-/* =========================================================
-   JOB SEEKER TOPBAR
-========================================================= */
+   TOPBAR
+   ========================================================= */
 
 .job-seeker-topbar {
-  position: relative;
-
   width: 100%;
   height: 72px;
+
   min-height: 72px;
 
   display: flex;
@@ -625,27 +500,23 @@
 
   border-bottom: 1px solid #e5e7eb;
 
-  z-index: 900;
+  position: relative;
+
+  z-index: 100;
 
   flex-shrink: 0;
 }
 
 /* =========================================================
    TOPBAR LEFT
-========================================================= */
+   ========================================================= */
 
 .topbar-left {
   min-width: 0;
 
   display: flex;
   align-items: center;
-
-  gap: 12px;
 }
-
-/* =========================================================
-   MOBILE MENU BUTTON
-========================================================= */
 
 .topbar-menu-btn {
   width: 40px;
@@ -656,18 +527,19 @@
   align-items: center;
   justify-content: center;
 
-  flex-shrink: 0;
-
-  color: #334155;
+  color: #475569;
 
   background: #f8fafc;
 
   border: 1px solid #e2e8f0;
+
   border-radius: 10px;
 
+  flex-shrink: 0;
+
   transition:
-    background-color 0.2s ease,
     color 0.2s ease,
+    background-color 0.2s ease,
     border-color 0.2s ease;
 }
 
@@ -679,26 +551,29 @@
   border-color: #cbd5e1;
 }
 
-.topbar-menu-btn:active {
-  transform: scale(0.97);
+.topbar-menu-btn svg {
+  width: 21px;
+  height: 21px;
+
+  max-width: none;
 }
 
 /* =========================================================
    TOPBAR ACTIONS
-========================================================= */
+   ========================================================= */
 
 .topbar-actions {
+  min-width: 0;
+
   display: flex;
   align-items: center;
 
-  gap: 10px;
-
-  flex-shrink: 0;
+  gap: 14px;
 }
 
 /* =========================================================
-   NOTIFICATION BUTTON
-========================================================= */
+   NOTIFICATION
+   ========================================================= */
 
 .topbar-notification {
   position: relative;
@@ -706,36 +581,45 @@
   width: 40px;
   height: 40px;
 
+  min-width: 40px;
+  min-height: 40px;
+
   display: flex;
   align-items: center;
   justify-content: center;
-
-  flex-shrink: 0;
 
   color: #475569;
 
   background: transparent;
 
   border: 1px solid transparent;
+
   border-radius: 10px;
 
+  flex-shrink: 0;
+
   transition:
-    background-color 0.2s ease,
     color 0.2s ease,
+    background-color 0.2s ease,
     border-color 0.2s ease;
 }
 
 .topbar-notification:hover {
-  color: #0f172a;
+  color: #1e293b;
 
   background: #f8fafc;
 
   border-color: #e2e8f0;
 }
 
-/* =========================================================
-   NOTIFICATION DOT
-========================================================= */
+.topbar-notification svg {
+  width: 19px;
+  height: 19px;
+
+  max-width: none;
+}
+
+/* Notification dot */
 
 .notification-dot {
   position: absolute;
@@ -743,10 +627,10 @@
   top: 8px;
   right: 8px;
 
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
 
-  background: #ef4444;
+  background: #2563eb;
 
   border: 2px solid #ffffff;
 
@@ -754,8 +638,8 @@
 }
 
 /* =========================================================
-   TOPBAR PROFILE
-========================================================= */
+   PROFILE
+   ========================================================= */
 
 .topbar-profile {
   min-width: 0;
@@ -765,12 +649,17 @@
 
   gap: 10px;
 
-  padding: 4px 6px;
+  padding: 5px 7px 5px 5px;
+
+  color: #0f172a;
 
   background: transparent;
 
   border: 1px solid transparent;
+
   border-radius: 12px;
+
+  text-align: left;
 
   transition:
     background-color 0.2s ease,
@@ -784,8 +673,8 @@
 }
 
 /* =========================================================
-   TOPBAR AVATAR
-========================================================= */
+   AVATAR
+   ========================================================= */
 
 .topbar-avatar {
   width: 40px;
@@ -800,16 +689,16 @@
 
   overflow: hidden;
 
-  color: #ffffff;
+  color: #2563eb;
 
-  background: #2563eb;
+  background: #eff6ff;
+
+  border: 1px solid #dbeafe;
 
   border-radius: 50%;
 
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 700;
-
-  line-height: 1;
 
   flex-shrink: 0;
 }
@@ -818,126 +707,110 @@
   width: 100%;
   height: 100%;
 
+  display: block;
+
   object-fit: cover;
 }
 
 /* =========================================================
-   TOPBAR USER INFO
-========================================================= */
+   USER INFO
+   ========================================================= */
 
 .topbar-user-info {
   min-width: 0;
 
-  max-width: 150px;
-
   display: flex;
   flex-direction: column;
 
-  align-items: flex-start;
-
-  overflow: hidden;
+  gap: 1px;
 }
 
-.topbar-user-info span {
-  width: 100%;
+.topbar-user-info strong {
+  max-width: 160px;
 
   overflow: hidden;
 
   color: #0f172a;
 
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
 
   line-height: 1.3;
 
   text-overflow: ellipsis;
+
+  white-space: nowrap;
+}
+
+.topbar-user-info span {
+  color: #94a3b8;
+
+  font-size: 11px;
+  font-weight: 500;
+
+  line-height: 1.3;
+
   white-space: nowrap;
 }
 
 /* =========================================================
-   TOPBAR CHEVRON
-========================================================= */
+   CHEVRON
+   ========================================================= */
 
 .topbar-chevron {
   width: 16px;
   height: 16px;
 
+  min-width: 16px;
+
+  color: #94a3b8;
+
   flex-shrink: 0;
-
-  color: #64748b;
 }
 
 /* =========================================================
-   DESKTOP
-========================================================= */
+   MAIN CONTENT
+   ========================================================= */
 
-@media (min-width: 769px) {
-  .job-seeker-sidebar {
-    transform: translateX(0);
-  }
+.job-seeker-content {
+  width: 100%;
+  min-width: 0;
 
-  .job-seeker-main {
-    width: calc(100% - 250px);
+  flex: 1;
 
-    margin-left: 250px;
-  }
+  padding: 28px;
 
-  .sidebar-backdrop {
-    display: none;
-  }
+  overflow-x: hidden;
 }
 
 /* =========================================================
-   TABLET
-========================================================= */
-
-@media (max-width: 1024px) {
-  .job-seeker-topbar {
-    padding-inline: 22px;
-  }
-
-  .topbar-user-info {
-    max-width: 130px;
-  }
-}
-
-/* =========================================================
-   TABLET + MOBILE
-========================================================= */
+   MOBILE / TABLET
+   ========================================================= */
 
 @media (max-width: 768px) {
-  .job-seeker-layout {
-    width: 100%;
-
-    height: 100vh;
-    height: 100dvh;
-
-    min-height: 100vh;
-    min-height: 100dvh;
-
-    overflow: hidden;
-  }
-
-  /* -------------------------------------------------------
+  /* -----------------------------------------
      SIDEBAR
-  ------------------------------------------------------- */
+  ----------------------------------------- */
 
   .job-seeker-sidebar {
     width: 270px;
 
     height: 100vh;
     height: 100dvh;
+    max-height: 100dvh;
 
-    min-height: 100vh;
-    min-height: 100dvh;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    -webkit-overflow-scrolling: touch;
+
+    overscroll-behavior-y: contain;
+
+    touch-action: pan-y;
 
     transform: translateX(-100%);
 
-    transition: transform 0.25s ease;
-
     box-shadow: 8px 0 30px rgba(15, 23, 42, 0.12);
-
-    z-index: 1100;
   }
 
   .job-seeker-sidebar.sidebar-mobile-open {
@@ -946,93 +819,162 @@
     box-shadow: 8px 0 30px rgba(15, 23, 42, 0.18);
   }
 
-  /* -------------------------------------------------------
-     MAIN
-  ------------------------------------------------------- */
+  /* -----------------------------------------
+     SIDEBAR BRAND
+  ----------------------------------------- */
+
+  .sidebar-brand-wrapper {
+    min-height: 64px;
+
+    padding-inline: 16px;
+  }
+
+  .sidebar-close-btn {
+    display: flex;
+  }
+
+  .sidebar-nav {
+    padding-top: 18px;
+  }
+
+  /*
+    Important:
+    Footer should not use auto margin on mobile.
+  */
+
+  .sidebar-footer {
+    margin-top: 0;
+
+    padding-top: 14px;
+    padding-bottom: 20px;
+  }
+
+  /* -----------------------------------------
+     MAIN AREA
+  ----------------------------------------- */
 
   .job-seeker-main {
     width: 100%;
 
-    height: 100vh;
-    height: 100dvh;
-
-    min-width: 0;
-    min-height: 0;
+    min-height: 100vh;
+    min-height: 100dvh;
 
     margin-left: 0;
 
-    overflow: hidden;
+    overflow-x: hidden;
   }
 
-  /* -------------------------------------------------------
+  /* -----------------------------------------
      TOPBAR
-  ------------------------------------------------------- */
+  ----------------------------------------- */
 
   .job-seeker-topbar {
+    width: 100%;
+
     height: 64px;
     min-height: 64px;
 
     padding: 0 18px;
+
+    position: relative;
+
+    z-index: 100;
   }
 
   .topbar-menu-btn {
     display: flex;
   }
 
-  /* -------------------------------------------------------
+  /* -----------------------------------------
      CONTENT
-  ------------------------------------------------------- */
+  ----------------------------------------- */
 
   .job-seeker-content {
     width: 100%;
 
-    min-width: 0;
-    min-height: 0;
+    padding: 22px 18px;
 
     overflow-x: hidden;
-    overflow-y: auto;
-  }
-
-  /* -------------------------------------------------------
-     BACKDROP
-  ------------------------------------------------------- */
-
-  .sidebar-backdrop {
-    display: block;
-
-    position: fixed;
-
-    inset: 0;
-
-    width: 100%;
-    height: 100%;
-
-    background: rgba(15, 23, 42, 0.35);
-
-    z-index: 1050;
-
-    cursor: pointer;
   }
 }
 
 /* =========================================================
-   MOBILE
-========================================================= */
+   SMALL MOBILE
+   ========================================================= */
 
-@media (max-width: 640px) {
-  .job-seeker-topbar {
+@media (max-width: 480px) {
+  .job-seeker-sidebar {
+    width: 260px;
+  }
+
+  .sidebar-brand-wrapper {
+    min-height: 62px;
+
     padding-inline: 14px;
+  }
+
+  .sidebar-nav {
+    padding-inline: 12px;
+  }
+
+  .sidebar-nav-item {
+    min-height: 43px;
+  }
+
+  .sidebar-footer {
+    padding-inline: 12px;
+    padding-bottom: 18px;
+  }
+
+  /* Topbar */
+
+  .job-seeker-topbar {
+    height: 60px;
+    min-height: 60px;
+
+    padding: 0 12px;
   }
 
   .topbar-actions {
     gap: 6px;
   }
 
-  .topbar-profile {
-    gap: 0;
+  .topbar-menu-btn {
+    width: 38px;
+    height: 38px;
 
-    padding: 3px;
+    min-width: 38px;
+    min-height: 38px;
   }
+
+  .topbar-notification {
+    width: 38px;
+    height: 38px;
+
+    min-width: 38px;
+    min-height: 38px;
+  }
+
+  .topbar-profile {
+    gap: 7px;
+
+    padding: 4px;
+  }
+
+  .topbar-avatar {
+    width: 36px;
+    height: 36px;
+
+    min-width: 36px;
+    min-height: 36px;
+
+    font-size: 12px;
+  }
+
+  /*
+    Hide text on very small screens.
+    This prevents topbar overflow.
+  */
 
   .topbar-user-info {
     display: none;
@@ -1041,49 +983,45 @@
   .topbar-chevron {
     display: none;
   }
-}
 
-/* =========================================================
-   SMALL MOBILE
-========================================================= */
-
-@media (max-width: 480px) {
-  .job-seeker-sidebar {
-    width: 260px;
-  }
-
-  .job-seeker-topbar {
-    height: 60px;
-    min-height: 60px;
-
-    padding-inline: 12px;
-  }
-
-  .topbar-menu-btn,
-  .topbar-notification {
-    width: 38px;
-    height: 38px;
-  }
-
-  .topbar-avatar {
-    width: 38px;
-    height: 38px;
-
-    min-width: 38px;
-    min-height: 38px;
+  .job-seeker-content {
+    padding: 18px 12px;
   }
 }
 
 /* =========================================================
-   VERY SMALL MOBILE
-========================================================= */
+   VERY SMALL DEVICES
+   ========================================================= */
 
 @media (max-width: 360px) {
   .job-seeker-sidebar {
     width: 245px;
   }
 
+  .sidebar-brand-text {
+    font-size: 19px;
+  }
+
+  .sidebar-brand-mark {
+    width: 36px;
+    height: 36px;
+
+    min-width: 36px;
+    min-height: 36px;
+  }
+
+  .sidebar-nav-item {
+    min-height: 42px;
+
+    gap: 10px;
+
+    padding-inline: 10px;
+  }
+
   .job-seeker-topbar {
+    height: 58px;
+    min-height: 58px;
+
     padding-inline: 10px;
   }
 
@@ -1095,37 +1033,114 @@
   .topbar-notification {
     width: 36px;
     height: 36px;
-  }
-
-  .topbar-avatar {
-    width: 36px;
-    height: 36px;
 
     min-width: 36px;
     min-height: 36px;
   }
-}
 
-/* =========================================================
-   SAFE AREA
-========================================================= */
+  .topbar-avatar {
+    width: 34px;
+    height: 34px;
 
-@supports (padding: env(safe-area-inset-bottom)) {
-  .job-seeker-sidebar {
-    padding-bottom: env(safe-area-inset-bottom);
+    min-width: 34px;
+    min-height: 34px;
   }
 
   .job-seeker-content {
-    padding-bottom: env(safe-area-inset-bottom);
+    padding-inline: 10px;
+  }
+}
+
+/* =========================================================
+   SHORT HEIGHT
+   ========================================================= */
+
+@media (max-height: 700px) {
+  .job-seeker-sidebar {
+    overflow-y: auto;
+
+    -webkit-overflow-scrolling: touch;
+
+    overscroll-behavior-y: contain;
+
+    touch-action: pan-y;
+  }
+
+  .sidebar-brand-wrapper {
+    min-height: 58px;
+  }
+
+  .sidebar-nav {
+    padding-top: 14px;
+  }
+
+  .sidebar-section-title {
+    margin-bottom: 6px;
+  }
+
+  .sidebar-nav-list {
+    gap: 2px;
+  }
+
+  .sidebar-nav-item {
+    min-height: 40px;
+  }
+
+  .sidebar-footer {
+    padding-top: 10px;
+    padding-bottom: 14px;
+  }
+
+  .sidebar-ai-card {
+    padding: 10px;
+  }
+}
+
+/* =========================================================
+   VERY SHORT MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) and (max-height: 600px) {
+  .job-seeker-sidebar {
+    height: 100dvh;
+    max-height: 100dvh;
+
+    overflow-y: auto;
+
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .sidebar-brand-wrapper {
+    min-height: 56px;
+  }
+
+  .sidebar-nav {
+    padding-top: 12px;
+  }
+
+  .sidebar-nav-item {
+    min-height: 38px;
+  }
+
+  .sidebar-footer {
+    padding-top: 8px;
+    padding-bottom: 12px;
+  }
+
+  .job-seeker-topbar {
+    height: 56px;
+    min-height: 56px;
   }
 }
 
 /* =========================================================
    REDUCED MOTION
-========================================================= */
+   ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
   .job-seeker-sidebar,
+  .sidebar-nav-item,
+  .sidebar-close-btn,
   .topbar-menu-btn,
   .topbar-notification,
   .topbar-profile {

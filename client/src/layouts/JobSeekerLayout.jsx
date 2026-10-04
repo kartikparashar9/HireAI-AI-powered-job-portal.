@@ -4,7 +4,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import JobSeekerSidebar from "../components/layout/JobSeekerSidebar";
 import JobSeekerTopbar from "../components/layout/JobSeekerTopbar";
 
-import "./jobSeekerLayout.css";
+import "./JobSeekerLayout.css";
 
 const JobSeekerLayout = () => {
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);

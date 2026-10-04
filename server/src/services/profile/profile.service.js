@@ -49,10 +49,6 @@ const getProfileByUserId = async (userId) => {
     "name email role avatar isEmailVerified",
   );
 
-  if (!profile) {
-    throw new ApiError(404, "Profile not found");
-  }
-
   return profile;
 };
 

@@ -162,6 +162,49 @@ const getJobApplications = async (recruiterId, jobId) => {
     .sort({ createdAt: -1 });
 };
 
+/*
+|--------------------------------------------------------------------------
+| GET SHORTLISTED APPLICATIONS
+|--------------------------------------------------------------------------
+| Returns only shortlisted applications belonging to jobs
+| owned by the currently authenticated recruiter.
+|
+| This is used by the recruiter when scheduling an interview.
+*/
+const getShortlistedApplications = async (recruiterId) => {
+  const recruiterJobs = await Job.find({
+    recruiter: recruiterId,
+  }).select("_id");
+
+  const jobIds = recruiterJobs.map((job) => job._id);
+
+  if (!jobIds.length) {
+    return [];
+  }
+
+  return Application.find({
+    job: {
+      $in: jobIds,
+    },
+    status: APPLICATION_STATUSES.SHORTLISTED,
+  })
+    .populate({
+      path: "job",
+      select:
+        "title location jobType workMode salaryMin salaryMax status applicationDeadline company",
+      populate: {
+        path: "company",
+        select: "name logo website location",
+      },
+    })
+    .populate("candidate", "name email avatar")
+    .populate("resume", "title fileName fileType fileUrl isPrimary")
+    .sort({
+      statusUpdatedAt: -1,
+      createdAt: -1,
+    });
+};
+
 const updateApplicationStatus = async (
   recruiterId,
   applicationId,
@@ -231,5 +274,6 @@ export {
   getApplicationById,
   withdrawApplication,
   getJobApplications,
+  getShortlistedApplications,
   updateApplicationStatus,
 };

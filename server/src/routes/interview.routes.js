@@ -1,5 +1,4 @@
 import { Router } from "express";
-import rateLimit from "express-rate-limit";
 
 import authMiddleware from "../middlewares/auth.middleware.js";
 import authorizeRoles from "../middlewares/role.middleware.js";
@@ -18,39 +17,20 @@ import {
   updateInterviewController,
   updateInterviewByCandidateController,
   cancelInterviewController,
-  completeInterviewController,
 } from "../controllers/interview.controller.js";
+
+import {
+  interviewReadLimiter,
+  interviewWriteLimiter,
+} from "../middlewares/rateLimiter.middleware.js";
 
 const router = Router();
 
-const interviewReadLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 60,
-  standardHeaders: true,
-  legacyHeaders: false,
-  message: {
-    success: false,
-    message: "Too many interview requests. Please try again later.",
-  },
-});
-
-const interviewWriteLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 20,
-  standardHeaders: true,
-  legacyHeaders: false,
-  message: {
-    success: false,
-    message:
-      "Too many interview modification requests. Please try again later.",
-  },
-});
-
 router.use(authMiddleware);
 
-// ─────────────────────────────────────────────
+// =====================================================
 // COMMON
-// ─────────────────────────────────────────────
+// =====================================================
 
 router.get(
   "/my",
@@ -59,17 +39,11 @@ router.get(
   getMyInterviewsController,
 );
 
-router.get(
-  "/:id",
-  interviewReadLimiter,
-  authorizeRoles("JOB_SEEKER", "RECRUITER"),
-  getInterviewByIdController,
-);
-
-// ─────────────────────────────────────────────
+// =====================================================
 // RECRUITER
-// ─────────────────────────────────────────────
+// =====================================================
 
+// Schedule interview
 router.post(
   "/",
   interviewWriteLimiter,
@@ -80,6 +54,7 @@ router.post(
   createInterviewController,
 );
 
+// Update scheduled interview
 router.patch(
   "/:id",
   interviewWriteLimiter,
@@ -90,18 +65,11 @@ router.patch(
   updateInterviewController,
 );
 
-router.patch(
-  "/:id/complete",
-  interviewWriteLimiter,
-  authorizeRoles("RECRUITER"),
-  requireApprovedRecruiter,
-  completeInterviewController,
-);
-
-// ─────────────────────────────────────────────
+// =====================================================
 // CANDIDATE
-// ─────────────────────────────────────────────
+// =====================================================
 
+// Candidate accepts/rejects interview
 router.patch(
   "/:id/respond",
   interviewWriteLimiter,
@@ -110,15 +78,27 @@ router.patch(
   updateInterviewByCandidateController,
 );
 
-// ─────────────────────────────────────────────
+// =====================================================
 // CANCEL
-// ─────────────────────────────────────────────
+// =====================================================
 
+// Recruiter or candidate can cancel
 router.patch(
   "/:id/cancel",
   interviewWriteLimiter,
   authorizeRoles("JOB_SEEKER", "RECRUITER"),
   cancelInterviewController,
+);
+
+// =====================================================
+// COMMON - SINGLE INTERVIEW
+// =====================================================
+
+router.get(
+  "/:id",
+  interviewReadLimiter,
+  authorizeRoles("JOB_SEEKER", "RECRUITER"),
+  getInterviewByIdController,
 );
 
 export default router;

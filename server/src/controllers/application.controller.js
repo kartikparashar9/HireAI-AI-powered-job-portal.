@@ -7,6 +7,7 @@ import {
   getApplicationById,
   withdrawApplication,
   getJobApplications,
+  getShortlistedApplications,
   updateApplicationStatus,
 } from "../services/applications/application.service.js";
 
@@ -71,6 +72,20 @@ const getJobApplicationsController = asyncHandler(async (req, res) => {
     );
 });
 
+const getShortlistedApplicationsController = asyncHandler(async (req, res) => {
+  const applications = await getShortlistedApplications(req.user.userId);
+
+  return res
+    .status(200)
+    .json(
+      new ApiResponse(
+        200,
+        applications,
+        "Shortlisted applications fetched successfully",
+      ),
+    );
+});
+
 const updateApplicationStatusController = asyncHandler(async (req, res) => {
   const application = await updateApplicationStatus(
     req.user.userId,
@@ -96,5 +111,6 @@ export {
   getApplicationByIdController,
   withdrawApplicationController,
   getJobApplicationsController,
+  getShortlistedApplicationsController,
   updateApplicationStatusController,
 };

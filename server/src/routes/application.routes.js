@@ -1,5 +1,4 @@
 import { Router } from "express";
-import rateLimit from "express-rate-limit";
 
 import authMiddleware from "../middlewares/auth.middleware.js";
 import authorizeRoles from "../middlewares/role.middleware.js";
@@ -18,20 +17,21 @@ import {
   withdrawApplicationController,
   getJobApplicationsController,
   updateApplicationStatusController,
+  getShortlistedApplicationsController,
 } from "../controllers/application.controller.js";
 
 import {
   applicationReadLimiter,
-  applicationWriteLimiter
+  applicationWriteLimiter,
 } from "../middlewares/rateLimiter.middleware.js";
 
 const router = Router();
 
 router.use(authMiddleware);
 
-// ==========================================
+// =====================================================
 // JOB SEEKER
-// ==========================================
+// =====================================================
 
 router.post(
   "/jobs/:jobId/apply",
@@ -49,13 +49,6 @@ router.get(
   getMyApplicationsController,
 );
 
-router.get(
-  "/:id",
-  applicationReadLimiter,
-  authorizeRoles("JOB_SEEKER"),
-  getApplicationByIdController,
-);
-
 router.patch(
   "/:id/withdraw",
   applicationWriteLimiter,
@@ -63,9 +56,19 @@ router.patch(
   withdrawApplicationController,
 );
 
-// ==========================================
+// =====================================================
 // RECRUITER
-// ==========================================
+// =====================================================
+
+// IMPORTANT:
+// Must come before "/:id"
+router.get(
+  "/shortlisted",
+  applicationReadLimiter,
+  authorizeRoles("RECRUITER"),
+  requireApprovedRecruiter,
+  getShortlistedApplicationsController,
+);
 
 router.get(
   "/jobs/:jobId",
@@ -83,6 +86,17 @@ router.patch(
   updateApplicationStatusValidator,
   validateRequest,
   updateApplicationStatusController,
+);
+
+// =====================================================
+// SINGLE APPLICATION
+// =====================================================
+
+router.get(
+  "/:id",
+  applicationReadLimiter,
+  authorizeRoles("JOB_SEEKER"),
+  getApplicationByIdController,
 );
 
 export default router;

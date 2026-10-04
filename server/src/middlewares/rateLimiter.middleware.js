@@ -170,6 +170,29 @@ const aiRateLimiter = rateLimit({
   },
 });
 
+const interviewReadLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 60,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: {
+    success: false,
+    message: "Too many interview requests. Please try again later.",
+  },
+});
+
+const interviewWriteLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 20,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: {
+    success: false,
+    message:
+      "Too many interview modification requests. Please try again later.",
+  },
+});
+
 export {
   authLimiter,
   passwordResetLimiter,
@@ -185,5 +208,7 @@ export {
   jobWriteLimiter,
   applicationReadLimiter,
   applicationWriteLimiter,
-  aiRateLimiter
+  aiRateLimiter,
+  interviewReadLimiter,
+  interviewWriteLimiter
 };

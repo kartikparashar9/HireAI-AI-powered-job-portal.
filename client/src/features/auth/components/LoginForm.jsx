@@ -2,7 +2,9 @@ import { Eye, EyeOff, LockKeyhole, Mail } from "lucide-react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "../authSlice";
+import { GoogleLogin } from "@react-oauth/google";
+
+import { googleLoginUser, loginUser } from "../authSlice";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -43,6 +45,33 @@ const LoginForm = () => {
         navigate("/", { replace: true });
       }
     }
+  };
+
+  const handleGoogleSuccess = async (credentialResponse) => {
+    const credential = credentialResponse?.credential;
+
+    if (!credential) {
+      return;
+    }
+
+    const result = await dispatch(googleLoginUser(credential));
+
+    if (googleLoginUser.fulfilled.match(result)) {
+      const role =
+        result.payload?.data?.user?.role || result.payload?.user?.role;
+
+      if (role === "RECRUITER") {
+        navigate("/recruiter/dashboard", { replace: true });
+      } else if (role === "ADMIN") {
+        navigate("/admin/dashboard", { replace: true });
+      } else {
+        navigate("/", { replace: true });
+      }
+    }
+  };
+
+  const handleGoogleError = () => {
+    console.error("Google Login Failed");
   };
 
   return (
@@ -120,10 +149,11 @@ const LoginForm = () => {
         <span>or</span>
       </div>
 
-      <button type="button" className="google-button">
-        <span>G</span>
-        Continue with Google
-      </button>
+      <GoogleLogin
+        onSuccess={handleGoogleSuccess}
+        onError={handleGoogleError}
+        useOneTap={false}
+      />
 
       <p className="auth-bottom-text">
         Don't have an account? <Link to="/register">Sign Up</Link>

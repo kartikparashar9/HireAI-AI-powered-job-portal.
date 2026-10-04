@@ -1,0 +1,1134 @@
+/* =========================================================
+   JOB SEEKER SIDEBAR
+========================================================= */
+
+.job-seeker-sidebar {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+
+  width: 250px;
+  height: 100vh;
+  height: 100dvh;
+
+  display: flex;
+  flex-direction: column;
+
+  background: #ffffff;
+
+  border-right: 1px solid #e5e7eb;
+
+  z-index: 1100;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  overscroll-behavior: contain;
+
+  -webkit-overflow-scrolling: touch;
+
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
+
+  /*
+    Important:
+    Prevent content from forcing sidebar width.
+  */
+  min-width: 0;
+
+  /*
+    Smooth mobile drawer.
+  */
+  transform: translateX(0);
+
+  transition: transform 0.25s ease;
+}
+
+/* =========================================================
+   SIDEBAR SCROLLBAR
+========================================================= */
+
+.job-seeker-sidebar::-webkit-scrollbar {
+  width: 5px;
+}
+
+.job-seeker-sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.job-seeker-sidebar::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+
+  border-radius: 999px;
+}
+
+.job-seeker-sidebar::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* =========================================================
+   BRAND WRAPPER
+========================================================= */
+
+.sidebar-brand-wrapper {
+  width: 100%;
+
+  min-height: 72px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 12px;
+
+  padding: 0 18px;
+
+  flex-shrink: 0;
+
+  border-bottom: 1px solid #f1f5f9;
+}
+
+/* =========================================================
+   BRAND
+========================================================= */
+
+.sidebar-brand {
+  min-width: 0;
+
+  display: inline-flex;
+  align-items: center;
+
+  gap: 11px;
+
+  color: #0f172a;
+
+  text-decoration: none;
+
+  flex-shrink: 0;
+}
+
+/* =========================================================
+   BRAND MARK
+========================================================= */
+
+.sidebar-brand-mark {
+  width: 38px;
+  height: 38px;
+
+  min-width: 38px;
+  min-height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #2563eb;
+
+  background: #eff6ff;
+
+  border: 1px solid #dbeafe;
+
+  border-radius: 10px;
+
+  flex-shrink: 0;
+}
+
+.sidebar-brand-mark svg {
+  width: 21px;
+  height: 21px;
+
+  max-width: none;
+}
+
+/* =========================================================
+   BRAND TEXT
+========================================================= */
+
+.sidebar-brand-text {
+  display: block;
+
+  color: #0f172a;
+
+  font-size: 20px;
+  font-weight: 700;
+
+  line-height: 1;
+
+  letter-spacing: -0.4px;
+
+  white-space: nowrap;
+}
+
+.sidebar-brand-text span {
+  color: #2563eb;
+}
+
+/* =========================================================
+   MOBILE CLOSE BUTTON
+========================================================= */
+
+.sidebar-close-btn {
+  width: 36px;
+  height: 36px;
+
+  min-width: 36px;
+  min-height: 36px;
+
+  display: none;
+
+  align-items: center;
+  justify-content: center;
+
+  color: #475569;
+
+  background: #f8fafc;
+
+  border: 1px solid #e2e8f0;
+  border-radius: 9px;
+
+  flex-shrink: 0;
+
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.sidebar-close-btn:hover {
+  color: #0f172a;
+
+  background: #f1f5f9;
+
+  border-color: #cbd5e1;
+}
+
+.sidebar-close-btn:active {
+  transform: scale(0.96);
+}
+
+.sidebar-close-btn svg {
+  width: 19px;
+  height: 19px;
+
+  max-width: none;
+}
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.sidebar-nav {
+  width: 100%;
+
+  padding: 22px 14px 12px;
+
+  flex-shrink: 0;
+}
+
+/* =========================================================
+   SECTION TITLE
+========================================================= */
+
+.sidebar-section-title {
+  width: 100%;
+
+  margin: 0 0 9px;
+
+  padding: 0 10px;
+
+  color: #94a3b8;
+
+  font-size: 10px;
+  font-weight: 700;
+
+  line-height: 1.4;
+
+  letter-spacing: 0.12em;
+
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   NAV LIST
+========================================================= */
+
+.sidebar-nav-list {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 4px;
+}
+
+/* =========================================================
+   NAV ITEM
+========================================================= */
+
+.sidebar-nav-item {
+  width: 100%;
+  min-width: 0;
+
+  min-height: 44px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  padding: 0 11px;
+
+  color: #64748b;
+
+  background: transparent;
+
+  border: 1px solid transparent;
+  border-radius: 10px;
+
+  text-decoration: none;
+
+  transition:
+    color 0.18s ease,
+    background-color 0.18s ease,
+    border-color 0.18s ease;
+
+  user-select: none;
+}
+
+/* =========================================================
+   NAV ITEM HOVER
+========================================================= */
+
+.sidebar-nav-item:hover {
+  color: #1e293b;
+
+  background: #f8fafc;
+
+  border-color: #f1f5f9;
+}
+
+/* =========================================================
+   ACTIVE NAV ITEM
+========================================================= */
+
+.sidebar-nav-item-active {
+  color: #2563eb;
+
+  background: #eff6ff;
+
+  border-color: #dbeafe;
+}
+
+.sidebar-nav-item-active:hover {
+  color: #2563eb;
+
+  background: #eff6ff;
+
+  border-color: #dbeafe;
+}
+
+/* =========================================================
+   NAV ICON
+========================================================= */
+
+.sidebar-nav-icon {
+  width: 20px;
+  height: 20px;
+
+  min-width: 20px;
+  min-height: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+}
+
+.sidebar-nav-icon svg {
+  width: 20px;
+  height: 20px;
+
+  max-width: none;
+}
+
+/* =========================================================
+   NAV LABEL
+========================================================= */
+
+.sidebar-nav-label {
+  min-width: 0;
+
+  overflow: hidden;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  line-height: 1.3;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* =========================================================
+   SIDEBAR FOOTER
+========================================================= */
+
+.sidebar-footer {
+  width: 100%;
+
+  margin-top: auto;
+
+  padding: 14px;
+
+  flex-shrink: 0;
+}
+
+/* =========================================================
+   AI CAREER CARD
+========================================================= */
+
+.sidebar-ai-card {
+  width: 100%;
+
+  display: flex;
+  align-items: flex-start;
+
+  gap: 10px;
+
+  padding: 13px;
+
+  background: #f8fafc;
+
+  border: 1px solid #e2e8f0;
+
+  border-radius: 12px;
+}
+
+/* =========================================================
+   AI ICON
+========================================================= */
+
+.sidebar-ai-icon {
+  width: 32px;
+  height: 32px;
+
+  min-width: 32px;
+  min-height: 32px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #7c3aed;
+
+  background: #f3e8ff;
+
+  border-radius: 9px;
+
+  flex-shrink: 0;
+}
+
+.sidebar-ai-icon svg {
+  width: 17px;
+  height: 17px;
+
+  max-width: none;
+}
+
+/* =========================================================
+   AI CONTENT
+========================================================= */
+
+.sidebar-ai-content {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: flex-start;
+}
+
+.sidebar-ai-content strong {
+  display: block;
+
+  max-width: 100%;
+
+  overflow: hidden;
+
+  color: #1e293b;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  line-height: 1.35;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sidebar-ai-content p {
+  margin-top: 3px;
+
+  color: #64748b;
+
+  font-size: 11px;
+
+  line-height: 1.45;
+}
+
+.sidebar-ai-content a {
+  display: inline-flex;
+
+  margin-top: 7px;
+
+  color: #2563eb;
+
+  font-size: 11px;
+  font-weight: 600;
+
+  line-height: 1.3;
+
+  text-decoration: none;
+}
+
+.sidebar-ai-content a:hover {
+  text-decoration: underline;
+}
+
+/* =========================================================
+   DESKTOP
+========================================================= */
+
+@media (min-width: 769px) {
+  .job-seeker-sidebar {
+    transform: translateX(0);
+  }
+
+  .sidebar-close-btn {
+    display: none;
+  }
+}
+
+/* =========================================================
+   TABLET + MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+  .job-seeker-sidebar {
+    width: 270px;
+
+    height: 100vh;
+    height: 100dvh;
+
+    transform: translateX(-100%);
+
+    box-shadow: 8px 0 30px rgba(15, 23, 42, 0.12);
+  }
+
+  .job-seeker-sidebar.sidebar-mobile-open {
+    transform: translateX(0);
+
+    box-shadow: 8px 0 30px rgba(15, 23, 42, 0.18);
+  }
+
+  .sidebar-brand-wrapper {
+    min-height: 64px;
+
+    padding-inline: 16px;
+  }
+
+  .sidebar-close-btn {
+    display: flex;
+  }
+
+  .sidebar-nav {
+    padding-top: 18px;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+  .job-seeker-sidebar {
+    width: 260px;
+  }
+
+  .sidebar-brand-wrapper {
+    padding-inline: 14px;
+  }
+
+  .sidebar-nav {
+    padding-inline: 12px;
+  }
+
+  .sidebar-footer {
+    padding: 12px;
+  }
+
+  .sidebar-nav-item {
+    min-height: 43px;
+  }
+}
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 360px) {
+  .job-seeker-sidebar {
+    width: 245px;
+  }
+
+  .sidebar-brand-text {
+    font-size: 19px;
+  }
+
+  .sidebar-ai-card {
+    padding: 11px;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .job-seeker-sidebar,
+  .sidebar-nav-item,
+  .sidebar-close-btn {
+    transition: none;
+  }
+}
+
+/* =========================================================
+   JOB SEEKER TOPBAR
+========================================================= */
+
+.job-seeker-topbar {
+  position: relative;
+
+  width: 100%;
+  height: 72px;
+  min-height: 72px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 28px;
+
+  background: #ffffff;
+
+  border-bottom: 1px solid #e5e7eb;
+
+  z-index: 900;
+
+  flex-shrink: 0;
+}
+
+/* =========================================================
+   TOPBAR LEFT
+========================================================= */
+
+.topbar-left {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+}
+
+/* =========================================================
+   MOBILE MENU BUTTON
+========================================================= */
+
+.topbar-menu-btn {
+  width: 40px;
+  height: 40px;
+
+  display: none;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  color: #334155;
+
+  background: #f8fafc;
+
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.topbar-menu-btn:hover {
+  color: #0f172a;
+
+  background: #f1f5f9;
+
+  border-color: #cbd5e1;
+}
+
+.topbar-menu-btn:active {
+  transform: scale(0.97);
+}
+
+/* =========================================================
+   TOPBAR ACTIONS
+========================================================= */
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  flex-shrink: 0;
+}
+
+/* =========================================================
+   NOTIFICATION BUTTON
+========================================================= */
+
+.topbar-notification {
+  position: relative;
+
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  color: #475569;
+
+  background: transparent;
+
+  border: 1px solid transparent;
+  border-radius: 10px;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.topbar-notification:hover {
+  color: #0f172a;
+
+  background: #f8fafc;
+
+  border-color: #e2e8f0;
+}
+
+/* =========================================================
+   NOTIFICATION DOT
+========================================================= */
+
+.notification-dot {
+  position: absolute;
+
+  top: 8px;
+  right: 8px;
+
+  width: 8px;
+  height: 8px;
+
+  background: #ef4444;
+
+  border: 2px solid #ffffff;
+
+  border-radius: 50%;
+}
+
+/* =========================================================
+   TOPBAR PROFILE
+========================================================= */
+
+.topbar-profile {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 4px 6px;
+
+  background: transparent;
+
+  border: 1px solid transparent;
+  border-radius: 12px;
+
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.topbar-profile:hover {
+  background: #f8fafc;
+
+  border-color: #e2e8f0;
+}
+
+/* =========================================================
+   TOPBAR AVATAR
+========================================================= */
+
+.topbar-avatar {
+  width: 40px;
+  height: 40px;
+
+  min-width: 40px;
+  min-height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  color: #ffffff;
+
+  background: #2563eb;
+
+  border-radius: 50%;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  line-height: 1;
+
+  flex-shrink: 0;
+}
+
+.topbar-avatar img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+/* =========================================================
+   TOPBAR USER INFO
+========================================================= */
+
+.topbar-user-info {
+  min-width: 0;
+
+  max-width: 150px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  overflow: hidden;
+}
+
+.topbar-user-info span {
+  width: 100%;
+
+  overflow: hidden;
+
+  color: #0f172a;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  line-height: 1.3;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* =========================================================
+   TOPBAR CHEVRON
+========================================================= */
+
+.topbar-chevron {
+  width: 16px;
+  height: 16px;
+
+  flex-shrink: 0;
+
+  color: #64748b;
+}
+
+/* =========================================================
+   DESKTOP
+========================================================= */
+
+@media (min-width: 769px) {
+  .job-seeker-sidebar {
+    transform: translateX(0);
+  }
+
+  .job-seeker-main {
+    width: calc(100% - 250px);
+
+    margin-left: 250px;
+  }
+
+  .sidebar-backdrop {
+    display: none;
+  }
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1024px) {
+  .job-seeker-topbar {
+    padding-inline: 22px;
+  }
+
+  .topbar-user-info {
+    max-width: 130px;
+  }
+}
+
+/* =========================================================
+   TABLET + MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+  .job-seeker-layout {
+    width: 100%;
+
+    height: 100vh;
+    height: 100dvh;
+
+    min-height: 100vh;
+    min-height: 100dvh;
+
+    overflow: hidden;
+  }
+
+  /* -------------------------------------------------------
+     SIDEBAR
+  ------------------------------------------------------- */
+
+  .job-seeker-sidebar {
+    width: 270px;
+
+    height: 100vh;
+    height: 100dvh;
+
+    min-height: 100vh;
+    min-height: 100dvh;
+
+    transform: translateX(-100%);
+
+    transition: transform 0.25s ease;
+
+    box-shadow: 8px 0 30px rgba(15, 23, 42, 0.12);
+
+    z-index: 1100;
+  }
+
+  .job-seeker-sidebar.sidebar-mobile-open {
+    transform: translateX(0);
+
+    box-shadow: 8px 0 30px rgba(15, 23, 42, 0.18);
+  }
+
+  /* -------------------------------------------------------
+     MAIN
+  ------------------------------------------------------- */
+
+  .job-seeker-main {
+    width: 100%;
+
+    height: 100vh;
+    height: 100dvh;
+
+    min-width: 0;
+    min-height: 0;
+
+    margin-left: 0;
+
+    overflow: hidden;
+  }
+
+  /* -------------------------------------------------------
+     TOPBAR
+  ------------------------------------------------------- */
+
+  .job-seeker-topbar {
+    height: 64px;
+    min-height: 64px;
+
+    padding: 0 18px;
+  }
+
+  .topbar-menu-btn {
+    display: flex;
+  }
+
+  /* -------------------------------------------------------
+     CONTENT
+  ------------------------------------------------------- */
+
+  .job-seeker-content {
+    width: 100%;
+
+    min-width: 0;
+    min-height: 0;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  /* -------------------------------------------------------
+     BACKDROP
+  ------------------------------------------------------- */
+
+  .sidebar-backdrop {
+    display: block;
+
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: rgba(15, 23, 42, 0.35);
+
+    z-index: 1050;
+
+    cursor: pointer;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 640px) {
+  .job-seeker-topbar {
+    padding-inline: 14px;
+  }
+
+  .topbar-actions {
+    gap: 6px;
+  }
+
+  .topbar-profile {
+    gap: 0;
+
+    padding: 3px;
+  }
+
+  .topbar-user-info {
+    display: none;
+  }
+
+  .topbar-chevron {
+    display: none;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+  .job-seeker-sidebar {
+    width: 260px;
+  }
+
+  .job-seeker-topbar {
+    height: 60px;
+    min-height: 60px;
+
+    padding-inline: 12px;
+  }
+
+  .topbar-menu-btn,
+  .topbar-notification {
+    width: 38px;
+    height: 38px;
+  }
+
+  .topbar-avatar {
+    width: 38px;
+    height: 38px;
+
+    min-width: 38px;
+    min-height: 38px;
+  }
+}
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 360px) {
+  .job-seeker-sidebar {
+    width: 245px;
+  }
+
+  .job-seeker-topbar {
+    padding-inline: 10px;
+  }
+
+  .topbar-actions {
+    gap: 4px;
+  }
+
+  .topbar-menu-btn,
+  .topbar-notification {
+    width: 36px;
+    height: 36px;
+  }
+
+  .topbar-avatar {
+    width: 36px;
+    height: 36px;
+
+    min-width: 36px;
+    min-height: 36px;
+  }
+}
+
+/* =========================================================
+   SAFE AREA
+========================================================= */
+
+@supports (padding: env(safe-area-inset-bottom)) {
+  .job-seeker-sidebar {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .job-seeker-content {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .job-seeker-sidebar,
+  .topbar-menu-btn,
+  .topbar-notification,
+  .topbar-profile {
+    transition: none;
+  }
+}

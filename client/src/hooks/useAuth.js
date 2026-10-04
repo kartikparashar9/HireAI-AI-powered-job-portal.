@@ -7,8 +7,8 @@ const useAuth = () => {
     user: auth.user,
     accessToken: auth.accessToken,
     isAuthenticated: auth.isAuthenticated,
-    isLoading: auth.isLoading,
     isInitialized: auth.isInitialized,
+    isLoading: auth.isLoading,
     error: auth.error,
     successMessage: auth.successMessage,
   };

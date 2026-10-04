@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { CheckCircle2, Mail, RefreshCw, XCircle } from "lucide-react";
 
 import authApi from "../../features/auth/api/authApi";
@@ -7,8 +7,11 @@ import "./VerifyEmail.css";
 
 const VerifyEmail = () => {
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
 
   const token = searchParams.get("token");
+
+  const verificationStarted = useRef(false);
 
   const [status, setStatus] = useState(token ? "verifying" : "waiting");
 
@@ -25,6 +28,13 @@ const VerifyEmail = () => {
       return;
     }
 
+    // Prevent duplicate verification requests
+    if (verificationStarted.current) {
+      return;
+    }
+
+    verificationStarted.current = true;
+
     const verify = async () => {
       try {
         setStatus("verifying");
@@ -36,6 +46,16 @@ const VerifyEmail = () => {
         setMessage(
           response?.message || "Your email has been verified successfully.",
         );
+
+        // Redirect to login after successful verification
+        setTimeout(() => {
+          navigate("/login", {
+            replace: true,
+            state: {
+              message: "Email verified successfully. Please login to continue.",
+            },
+          });
+        }, 1500);
       } catch (error) {
         setStatus("error");
 
@@ -47,7 +67,7 @@ const VerifyEmail = () => {
     };
 
     verify();
-  }, [token]);
+  }, [token, navigate]);
 
   const handleResend = async () => {
     if (!email.trim()) {
@@ -76,7 +96,7 @@ const VerifyEmail = () => {
   };
 
   // --------------------------------
-  // WAITING FOR EMAIL
+  // NO TOKEN
   // --------------------------------
 
   if (status === "waiting") {
@@ -91,7 +111,7 @@ const VerifyEmail = () => {
 
           <p>
             We've sent a verification link to your email address. Please check
-            your inbox and click the verification link to activate your HireAI
+            your inbox and click the verification link to verify your HireAI
             account.
           </p>
 
@@ -166,16 +186,14 @@ const VerifyEmail = () => {
 
           <p>{message}</p>
 
-          <Link to="/login" className="verify-button">
-            Continue to Login
-          </Link>
+          <p>Redirecting you to login...</p>
         </div>
       </div>
     );
   }
 
   // --------------------------------
-  // ERROR / EXPIRED TOKEN
+  // ERROR
   // --------------------------------
 
   return (
@@ -215,10 +233,10 @@ const VerifyEmail = () => {
 
           {resendError && <p className="resend-error">{resendError}</p>}
         </div>
-
+{/* 
         <Link to="/login" className="back-login">
           Back to Login
-        </Link>
+        </Link> */}
       </div>
     </div>
   );

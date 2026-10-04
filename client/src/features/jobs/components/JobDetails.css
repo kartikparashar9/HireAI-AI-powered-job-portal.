@@ -1,0 +1,257 @@
+.job-details-page {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 28px;
+  box-sizing: border-box;
+}
+
+.job-details-back {
+  margin-bottom: 18px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: #4f46e5;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.job-details-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 22px;
+  align-items: start;
+}
+
+.job-details-main {
+  min-width: 0;
+}
+
+.job-details-hero {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  margin-bottom: 18px;
+  padding: 24px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+}
+
+.job-details-company-logo {
+  width: 62px;
+  height: 62px;
+  flex: 0 0 62px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #eef2ff;
+  color: #4f46e5;
+  font-size: 23px;
+  font-weight: 700;
+}
+
+.job-details-company-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.job-details-title {
+  min-width: 0;
+}
+
+.job-details-title > span {
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.job-details-title h1 {
+  margin: 5px 0 9px;
+  color: #101b46;
+  font-size: 27px;
+  line-height: 1.2;
+}
+
+.job-details-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  color: #64748b;
+  font-size: 11px;
+}
+
+.job-details-card {
+  margin-bottom: 18px;
+  padding: 22px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+}
+
+.job-details-card h2 {
+  margin: 0 0 16px;
+  color: #101b46;
+  font-size: 16px;
+}
+
+.job-details-description {
+  color: #475569;
+  font-size: 13px;
+  line-height: 1.8;
+  white-space: pre-line;
+}
+
+.job-details-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.job-details-skills span {
+  padding: 7px 10px;
+  border-radius: 7px;
+  background: #eef2ff;
+  color: #4338ca;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.job-details-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.job-details-action-card {
+  padding: 18px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+}
+
+.job-details-apply,
+.job-details-save {
+  width: 100%;
+  height: 42px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.job-details-apply {
+  border: none;
+  background: #4f46e5;
+  color: #ffffff;
+}
+
+.job-details-apply:hover {
+  background: #4338ca;
+}
+
+.job-details-save {
+  margin-top: 9px;
+  border: 1px solid #c7d2fe;
+  background: #eef2ff;
+  color: #4338ca;
+}
+
+.job-details-save.active {
+  background: #e0e7ff;
+}
+
+.job-details-save:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.job-overview-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 0;
+  border-bottom: 1px solid #edf1f7;
+}
+
+.job-overview-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.job-overview-item:first-child {
+  padding-top: 0;
+}
+
+.job-overview-item span {
+  color: #94a3b8;
+  font-size: 10px;
+}
+
+.job-overview-item strong {
+  color: #172554;
+  font-size: 12px;
+}
+
+.job-details-loading,
+.job-details-error {
+  padding: 60px 20px;
+  text-align: center;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+}
+
+.job-details-error h2 {
+  margin: 0;
+  color: #101b46;
+}
+
+.job-details-error p {
+  color: #64748b;
+  font-size: 12px;
+}
+
+.job-details-error button {
+  height: 38px;
+  padding: 0 15px;
+  border: none;
+  border-radius: 8px;
+  background: #4f46e5;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+@media (max-width: 850px) {
+  .job-details-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .job-details-sidebar {
+    order: -1;
+  }
+}
+
+@media (max-width: 600px) {
+  .job-details-page {
+    padding: 20px 15px;
+  }
+
+  .job-details-hero {
+    padding: 18px;
+  }
+
+  .job-details-title h1 {
+    font-size: 21px;
+  }
+
+  .job-details-company-logo {
+    width: 50px;
+    height: 50px;
+    flex-basis: 50px;
+  }
+}

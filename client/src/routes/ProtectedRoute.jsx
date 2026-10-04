@@ -1,9 +1,15 @@
 import { Navigate, Outlet, useLocation } from "react-router-dom";
+
 import useAuth from "../hooks/useAuth";
 
 const ProtectedRoute = () => {
   const { isAuthenticated, isInitialized } = useAuth();
+
   const location = useLocation();
+
+  /* ---------------------------------------------
+     AUTH INITIALIZATION
+  --------------------------------------------- */
 
   if (!isInitialized) {
     return (
@@ -14,9 +20,25 @@ const ProtectedRoute = () => {
     );
   }
 
+  /* ---------------------------------------------
+     NOT AUTHENTICATED
+  --------------------------------------------- */
+
   if (!isAuthenticated) {
-    return <Navigate to="/login" replace state={{ from: location.pathname }} />;
+    return (
+      <Navigate
+        to="/login"
+        replace
+        state={{
+          from: location,
+        }}
+      />
+    );
   }
+
+  /* ---------------------------------------------
+     AUTHENTICATED
+  --------------------------------------------- */
 
   return <Outlet />;
 };

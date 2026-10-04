@@ -1,0 +1,337 @@
+/* =========================================================
+   JOB CARD
+========================================================= */
+
+.job-card {
+  width: 100%;
+  min-width: 0;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.job-card:hover {
+  border-color: #bfdbfe;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+  transform: translateY(-2px);
+}
+
+/* =========================================================
+   TOP
+========================================================= */
+
+.job-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.job-company-logo {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  background: #eff6ff;
+  color: #2563eb;
+  border: 1px solid #dbeafe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 700;
+  overflow: hidden;
+}
+
+.job-company-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* =========================================================
+   SAVE BUTTON
+========================================================= */
+
+.job-save-button {
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.job-save-button:hover {
+  background: #eff6ff;
+  border-color: #bfdbfe;
+  color: #2563eb;
+}
+
+.job-save-button:active {
+  transform: scale(0.95);
+}
+
+.job-save-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+.job-save-button-active {
+  background: #eff6ff;
+  border-color: #93c5fd;
+  color: #2563eb;
+}
+
+/* =========================================================
+   SAVE SPINNER
+========================================================= */
+
+.job-save-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  animation: job-save-spin 0.7s linear infinite;
+}
+
+@keyframes job-save-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.job-card-content {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.job-card-company {
+  color: #64748b;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.job-card-title {
+  margin: 0;
+  color: #0f172a;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.35;
+  word-break: break-word;
+}
+
+/* =========================================================
+   META
+========================================================= */
+
+.job-card-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 7px;
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.job-card-meta-dot {
+  color: #cbd5e1;
+}
+
+/* =========================================================
+   TAGS
+========================================================= */
+
+.job-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 2px;
+}
+
+.job-card-tags span {
+  max-width: 100%;
+  padding: 5px 9px;
+  border-radius: 7px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  color: #475569;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+/* =========================================================
+   SKILLS
+========================================================= */
+
+.job-card-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 2px;
+}
+
+.job-card-skills span {
+  max-width: 100%;
+  padding: 5px 9px;
+  border-radius: 7px;
+  background: #eff6ff;
+  border: 1px solid #dbeafe;
+  color: #2563eb;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.job-card-more-skills {
+  background: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+  color: #64748b !important;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.job-card-footer {
+  min-width: 0;
+  padding-top: 15px;
+  border-top: 1px solid #f1f5f9;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.job-card-deadline {
+  min-width: 0;
+  color: #64748b;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.job-card-view-button {
+  flex-shrink: 0;
+  border: 0;
+  border-radius: 9px;
+  padding: 9px 14px;
+  background: #2563eb;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.job-card-view-button:hover {
+  background: #1d4ed8;
+}
+
+.job-card-view-button:active {
+  transform: scale(0.97);
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 768px) {
+  .job-card {
+    padding: 18px;
+    border-radius: 14px;
+  }
+
+  .job-card-title {
+    font-size: 17px;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 520px) {
+  .job-card {
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .job-company-logo {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+  }
+
+  .job-save-button {
+    width: 36px;
+    height: 36px;
+  }
+
+  .job-card-title {
+    font-size: 16px;
+  }
+
+  .job-card-footer {
+    align-items: flex-start;
+  }
+
+  .job-card-deadline {
+    flex: 1;
+  }
+
+  .job-card-view-button {
+    padding: 8px 12px;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 380px) {
+  .job-card {
+    padding: 14px;
+  }
+
+  .job-card-footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .job-card-view-button {
+    width: 100%;
+  }
+}

@@ -348,7 +348,7 @@ const completeInterview = async (recruiterId, interviewId, data = {}) => {
     );
   }
 
-  if (interview.status !== "SCHEDULED") {
+  if (!["SCHEDULED", "CONFIRMED"].includes(interview.status)) {
     throw new ApiError(
       400,
       `Interview cannot be completed because it is already ${interview.status.toLowerCase()}`,
